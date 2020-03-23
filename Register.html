@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Page</title>
+	<link rel="stylesheet" type="text/css" href="styleregister.css">
+</head>
+<body>
+
+	<div class="home1">
+
+		<div class="form-box">
+			<div class="button-box">
+				<div id="btn"></div>
+				<button type="button" class="toggle-btn" onclick="login()">Login</button>
+				<button type="button" class="toggle-btn" onclick="register()">Register</button>
+
+	        </div> 
+	          <div class="social-icons">
+		 		<img src="fb1.jpg">
+		 		<img src="tw.jpg">
+		 		<img src="insta.jpg">
+			  </div>
+
+			  <form id="login "class="input-group" action="server_reg.php" method="post">
+			  	<input type="text" class="input-field" placeholder="User Id" required >
+			  	<input type="text" class="input-field" placeholder="Email Id" required>
+			  	<input type="password" class="input-field" placeholder="Enter Password" required>
+			  	<input type="password" class="input-field" placeholder="Re-Enter Password" required>
+			  	<input type="checkbox" class="check-box"> <span>Agree to terms and conditions</span>
+			  	<button type="submit" class="submit-box">Register</button>
+			  </form>
+
+			  <form id="register" class="input-group">
+			  	<input type="text" class="input-field" placeholder="User Id" required >
+			  	<input type="text" class="input-field" placeholder="Email Id" required>
+			  	<input type="password" class="input-field" placeholder="Enter Password" required>
+			  	<input type="password" class="input-field" placeholder="Re-Enter Password" required>
+			  	<input type="checkbox" class="check-box"> <span>Agree to terms and conditions</span>
+			  	<button type="submit" class="submit-box">Register</button>
+			  </form>
+
+			</div>
+
+		</div>
+
+		<script >
+	
+			var x = document.getElementById("btn");
+
+			function register(){
+				x.style.left = "110px";
+				
+			}
+
+			function login(){
+				x.style.left = "0";
+				window.location = "Home_page.html";
+			} 
+
+ 
+		</script>
+
+</body>
+</html>
