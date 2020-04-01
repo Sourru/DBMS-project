@@ -22,7 +22,7 @@ $id = isset($_GET['ID']) ? $_GET['ID'] : '';
 
 <html lang="en">
   <head>
-    <title>Hello, world!</title>
+    <title>Authority Profile</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -73,16 +73,13 @@ $id = isset($_GET['ID']) ? $_GET['ID'] : '';
           <input type="text" name="ID" id="id" value="<?php echo $row ['ID'];?>" class="form-control" disabled>
         </div>
         <div class="form-group">
-          <label for="FName">First Name</label>
-          <input type="text" name="FName" id="fname" value="<?php echo $row ['FName'];?>" class="form-control" disabled>
+          <label for="FName">Full Name</label>
+          <input type="text" name="FName" id="fname" value="<?php echo $row ['Full_Name'];?>" class="form-control" disabled>
         </div>
+        
         <div class="form-group">
-          <label for="LName">Last Name</label>
-          <input type="text" name="LName" id="lname" value="<?php echo $row ['LName'];?>" class="form-control" disabled>
-        </div>
-        <div class="form-group">
-          <label for="Address">Address</label>
-          <input type="text" name="Address" id="address" value="<?php echo $row ['Designation'];?>" class="form-control" disabled>
+          <label for="Designation">Designation</label>
+          <input type="text" name="Designation" id="address" value="<?php echo $row ['Designation'];?>" class="form-control" disabled>
         </div>
         <div class="form-group">
           <label for="Cls">Class</label>

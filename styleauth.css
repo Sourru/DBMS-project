@@ -1,0 +1,37 @@
+body{
+
+	background-image: url(bck.jpg);
+}
+
+nav {
+background-color:rgb(29, 3, 112);
+
+}
+nav a{
+font-size:25px;
+color:white;
+padding-left:20px;
+padding-right:20px;
+}
+#logo {
+font-size:35px;
+}
+/*#sportsdiv{
+
+	border:2px solid black;
+	
+}
+#artsdiv{
+
+	border:2px solid black;
+}#socialdiv{
+
+	border:2px solid black;
+}#codingdiv{
+
+	border:2px solid black;
+}*/
+.mySlides h3{
+
+	color:black;
+}

@@ -3,6 +3,7 @@
 $conn = mysqli_connect('localhost', 'root', '', 'dbms_project');
 $id=$_GET['ID'];
 $type=$_GET['type'];
+$uid=$_GET['uid'];
 $sql = "SELECT * FROM files";
 $result = mysqli_query($conn, $sql);
 
@@ -14,14 +15,14 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     $filename = $_FILES['myfile']['name'];
 
     // destination of the file on the server
-    $file_pointer = 'uploads/' . $id.'/'.$type;
+    $file_pointer = 'uploads/' . $id.'/'.$type.'/'.$uid;
      $destination = $file_pointer.'/' . $filename;
+
 
     if (!file_exists($file_pointer)) {
     mkdir($file_pointer, 0777, true);
     }
-
-   
+  
 
     // get the file extension
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
@@ -31,15 +32,84 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     $size = $_FILES['myfile']['size'];
 
     if (!in_array($extension, ['zip', 'pdf', 'docx','jpg','png'])) {
-        echo "You file extension must be .zip, .pdf or .docx";
+        echo "You file extension must be .zip, .pdf ,.docx ,.jpg or .png";
     } elseif ($_FILES['myfile']['size'] > 3000000) { // file shouldn't be larger than 3Megabyte
         echo "File too large!";
     } else {
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)) {
-            $sql = "INSERT INTO files (ID,Type,Name,size) VALUES ('$id','$type','$filename', $size)";
+            $sql = "INSERT INTO files (UID,ID,Type,Name,size) VALUES ('$uid','$id','$type','$filename', $size)";
             if (mysqli_query($conn, $sql)) {
-                echo "File uploaded successfully";
+                //echo "File uploaded successfully";
+                if($type=='Sports'){
+                    header("location: ../sports_edit1/crud/index.php?ID=".$id);
+                }
+                elseif($type=='Arts'){
+                    header("location: ../arts_edit1/crud/index.php?ID=".$id);
+                }
+                elseif($type=='Social'){
+                    header("location: ../social_edit1/crud/index.php?ID=".$id);
+                }
+                elseif($type=='Comp'){
+                    header("location: ../comp_edit1/crud/index.php?ID=".$id);
+                }              
+            }
+        } else {
+            echo "Failed to upload file.";
+        }
+    }
+}
+// Uploads files
+elseif (isset($_POST['save1'])) { // if save button on the form is clicked
+    // name of the uploaded file
+    $filename = $_FILES['myfile']['name'];
+
+    // destination of the file on the server
+    $file_pointer = 'uploads/' . $id.'/'.$type.'/'.$uid;
+     $destination = $file_pointer.'/' . $filename;
+
+
+    if (!file_exists($file_pointer)) {
+    mkdir($file_pointer, 0777, true);
+    }
+
+    $files1 = glob($file_pointer.'/*');  
+    // Deleting all the files in the list 
+    foreach($files1 as $file1) { 
+        if(is_file($file1))   
+            // Delete the given file 
+            unlink($file1);  
+    } 
+
+    // get the file extension
+    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+
+    // the physical file on a temporary uploads directory on the server
+    $file = $_FILES['myfile']['tmp_name'];
+    $size = $_FILES['myfile']['size'];
+
+    if (!in_array($extension, ['zip', 'pdf', 'docx','jpg','png'])) {
+        echo "You file extension must be .zip, .pdf ,.docx ,.jpg or .png";
+    } elseif ($_FILES['myfile']['size'] > 3000000) { // file shouldn't be larger than 3Megabyte
+        echo "File too large!";
+    } else {
+        // move the uploaded (temporary) file to the specified destination
+        if (move_uploaded_file($file, $destination)) {
+            $sql = "UPDATE files SET Name='$filename',size=$size WHERE UID='$uid'";
+            if (mysqli_query($conn, $sql)) {
+                //echo "File uploaded successfully";
+                if($type=='Sports'){
+                    header("location: ../sports_edit1/crud/index.php?ID=".$id);
+                }
+                elseif($type=='Arts'){
+                    header("location: ../arts_edit1/crud/index.php?ID=".$id);
+                }
+                elseif($type=='Social'){
+                    header("location: ../social_edit1/crud/index.php?ID=".$id);
+                }
+                elseif($type=='Comp'){
+                    header("location: ../comp_edit1/crud/index.php?ID=".$id);
+                }
             }
         } else {
             echo "Failed to upload file.";
@@ -47,32 +117,3 @@ if (isset($_POST['save'])) { // if save button on the form is clicked
     }
 }
 
-// Downloads files
-if (isset($_GET['file_id'])) {
-    $id = $_GET['file_id'];
-    $type = $_GET['type'];
-    // fetch file to download from database
-    $sql = "SELECT * FROM files WHERE ID= '$id' and Type='$type'";
-    $result = mysqli_query($conn, $sql);
-
-    $file = mysqli_fetch_assoc($result);
-    $filepath = 'uploads/' . $file['Name'];
-
-    if (file_exists($filepath)) {
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename=' . basename($filepath));
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize('uploads/' . $file['Name']));
-        readfile('uploads/' . $file['Name']);
-
-        // Now update downloads count
-      /*  $newCount = $file['downloads'] + 1;
-        $updateQuery = "UPDATE files SET downloads=$newCount WHERE id=$id";
-        mysqli_query($conn, $updateQuery); */
-        exit;
-    }
-
-}

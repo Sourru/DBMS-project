@@ -9,10 +9,10 @@ if (isset ($_POST['Type'])  && isset($_POST['Description']) && isset($_POST['Ven
   $achieve = $_POST['Achievements'];
   $rawdate = $_POST['DOB'];
   $dob = date('Y-m-d',strtotime($rawdate));
-  
-  $sql = 'INSERT INTO competitive(ID,Event,Description,Venue,Achievements,Date_comp) VALUES(:id,:type,:descp,:venue,:achieve,:dob)';
+  $uid = uniqid("CMP-");
+  $sql = 'INSERT INTO competitive(UID,ID,Event,Description,Venue,Achievements,Date_comp) VALUES(:uid,:id,:type,:descp,:venue,:achieve,:dob)';
   $statement = $connection->prepare($sql);
-  if ($statement->execute([':id' => $id,':type' => $type,':descp' => $descp,':venue' => $venue,':achieve' => $achieve,':dob' => $dob])) {
+  if ($statement->execute([':uid' => $uid,':id' => $id,':type' => $type,':descp' => $descp,':venue' => $venue,':achieve' => $achieve,':dob' => $dob])) {
     $message = 'data inserted successfully';
   }
   
@@ -45,12 +45,7 @@ else{
       </li>
       <li class="nav-item">
         <a class="nav-link" href="">Add Achievements</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="edit.php?ID=<?php echo $id?>">Edit Achievements</a>
-      </li>
-      
-      
+      </li> 
     </ul>
   </div>
   

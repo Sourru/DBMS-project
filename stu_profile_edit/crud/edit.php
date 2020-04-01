@@ -5,10 +5,11 @@ $sql = 'SELECT * FROM student WHERE ID=:id';
 $statement = $connection->prepare($sql);
 $statement->execute([':id' => $id ]);
 $person = $statement->fetch(PDO::FETCH_OBJ);
-if (isset ($_POST['FName'])  && isset($_POST['LName']) && isset($_POST['Cls']) && isset($_POST['Department'])  && isset($_POST['DOB']) && isset($_POST['Email'])  && isset($_POST['Mobile'])  && isset($_POST['Address']) && isset($_POST['Password'])) {
+if (isset ($_POST['FName'])  && isset($_POST['Cls']) && isset($_POST['Roll']) && isset($_POST['Department'])  && isset($_POST['DOB']) && isset($_POST['Email'])  && isset($_POST['Mobile'])  && isset($_POST['Address']) && isset($_POST['Password'])) {
   $fname = $_POST['FName'];
-  $lname = $_POST['LName'];
   $cls = $_POST['Cls'];
+  $roll = $_POST['Roll'];
+  $year = substr($roll,0,2);
   $depart = $_POST['Department'];
   $rawdate = $_POST['DOB'];
   $dob = date('Y-m-d',strtotime($rawdate));
@@ -16,9 +17,9 @@ if (isset ($_POST['FName'])  && isset($_POST['LName']) && isset($_POST['Cls']) &
   $mobile = $_POST['Mobile'];
   $address = $_POST['Address'];
   $pass = $_POST['Password'];
-  $sql = 'UPDATE student SET FName=:fname,LName=:lname,Class=:cls,Department=:depart,DOB=:dob,Email=:email,Mobile=:mobile,Address=:address,Password=:pass WHERE ID=:id';
+  $sql = 'UPDATE student SET Full_Name=:fname,Class=:cls,Rollno=:roll,Year=:year,Department=:depart,DOB=:dob,Email=:email,Mobile=:mobile,Address=:address,Password=:pass WHERE ID=:id';
   $statement = $connection->prepare($sql);
-  if ($statement->execute([':fname' => $fname,':lname' => $lname,':cls' => $cls,':depart' => $depart,':dob' => $dob,':email' => $email,':mobile' => $mobile,':address' => $address,':pass' => $pass,':id' => $id])) {
+  if ($statement->execute([':fname' => $fname,':cls' => $cls,':roll' => $roll,':year' => $year,':depart' => $depart,':dob' => $dob,':email' => $email,':mobile' => $mobile,':address' => $address,':pass' => $pass,':id' => $id])) {
     header("Location: view_stu_profile.php?ID=".$id);
   }
 
@@ -71,16 +72,17 @@ if (isset ($_POST['FName'])  && isset($_POST['LName']) && isset($_POST['Cls']) &
       <?php endif; ?>
       <form method="post">
         <div class="form-group">
-          <label for="FName">First Name</label>
-          <input value="<?= $person->FName; ?>" type="text" name="FName" id="fname" class="form-control">
+          <label for="FName">Full Name</label>
+          <input value="<?= $person->Full_Name; ?>" type="text" name="FName" id="fname" class="form-control">
         </div>
-        <div class="form-group">
-          <label for="LName">Last Name</label>
-          <input value="<?= $person->LName; ?>" type="text" name="LName" id="lname" class="form-control">
-        </div>
+      
         <div class="form-group">
           <label for="Cls">Class</label>
           <input value="<?= $person->Class; ?>" type="text" name="Cls" id="cls" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="Roll">Roll No</label>
+          <input value="<?= $person->Rollno; ?>" type="text" name="Roll" id="roll" class="form-control">
         </div>
          <div class="form-group">
           <label for="Department">Department</label>

@@ -50,9 +50,9 @@
 
 			  <form id="register" class="input-group" action="server_reg.php" method="post">
 			  	<input type="text" name="user" class="input-field" placeholder="Reg. Id" required >
-			  	<input type="text" name="fname" class="input-field" placeholder="First Name" required>
-			  	<input type="text" name="lname" class="input-field" placeholder="Last Name" required>
-			  	<input type="text" name="class" class="input-field" placeholder="Class" required maxlength="3">
+			  	<input type="text" name="fname" class="input-field" placeholder="Full Name(First Middle Last)" required>
+			  	<input type="text" name="class" class="input-field" placeholder="Class(TE1/FE1/BE1)" required maxlength="4">
+			  	<input type="number" name="rollno" class="input-field" placeholder="Roll No." required maxlength="5">
 			  	<input list="dp" name="depart" class="input-field" placeholder="Department" required>
   					<datalist id="dp">
     					<option value="Computer">

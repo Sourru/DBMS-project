@@ -4,6 +4,7 @@ $type ='';
 $desc ='';
 $venue ='';
 $ach ='';
+$uid ='';
 /*
 require 'db.php';
 $sql = 'SELECT * FROM arts WHERE ID='.$id.'';
@@ -50,9 +51,6 @@ $people = $statement->fetchAll(PDO::FETCH_OBJ);
       <li class="nav-item">
         <a class="nav-link" href="create.php?ID=<?php echo $id?>">Add Achievements</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="edit.php?ID=<?php echo $id?>">Edit Achievements</a>
-      </li>
       
       
     </ul>
@@ -82,6 +80,7 @@ $people = $statement->fetchAll(PDO::FETCH_OBJ);
        ?>
           <tr>
             <td><?php echo $row ['ID'];?></td>
+                <?php $uid = $row ['UID'];?>
             <td><?php echo $row ['Sports_Name'];?>
                <?php $type = $row ['Sports_Name'];?>
             </td>
@@ -96,15 +95,34 @@ $people = $statement->fetchAll(PDO::FETCH_OBJ);
             <td><?php echo $row ['Date_Sports'];?></td>
             
             <td>
-              <a href="edit.php?ID=<?php echo $id?>" style="margin:5%;" class="btn btn-info">Edit</a>
-              <a onclick="return confirm('Are you sure you want to delete this entry?')" style="margin:5%;" href="delete.php?ID=<?php echo urlencode($id) ?>&art=<?php echo urlencode($type) ?>&des=<?php echo urlencode($desc) ?>&ven=<?php echo urlencode($venue) ?>&ach=<?php echo urlencode($ach) ?>" class='btn btn-danger'>Delete</a>
+              <a href="edit.php?ID=<?php echo urlencode($id)?>&uid=<?php echo urlencode($uid) ?>" style="margin:5%;" class="btn btn-info">Edit</a>
+              <a onclick="return confirm('Are you sure you want to delete this entry?')" style="margin:5%;" href="delete.php?ID=<?php echo urlencode($id) ?>&uid=<?php echo urlencode($uid) ?>" class='btn btn-danger'>Delete</a>
             </td>
-            <td>
-               <form action="../../file/filesLogic.php?ID=<?php echo $id?>&type=Sports" method="post" enctype="multipart/form-data" >
+            <?php  
+
+                  $sql1 = "SELECT * FROM files WHERE ID = '$id' and UID='$uid'";
+                  $result1 = mysqli_query ($conn,$sql1) or die ('Error');
+                  if(mysqli_num_rows($result1)==0)
+                  {
+            ?>
+            <td >
+               <form action="../../file/filesLogic.php?ID=<?php echo $id?>&uid=<?php echo $uid?>&type=Sports" method="post" enctype="multipart/form-data" >
                   <input type="file" name="myfile" >
-                  <button style="margin:5%;" type="submit" name="save" class="btn btn-info">upload</button>
+                  <button style="margin:5%;" type="submit" name="save" class="btn btn-info">Upload(Mandatory)</button>
                 </form>
             </td>
+             <?php }else{ ?>
+              
+            <td >  
+              <div>                        
+                <form action="../../file/filesLogic.php?ID=<?php echo $id?>&uid=<?php echo $uid?>&type=Sports" method="post" enctype="multipart/form-data" >
+                 <a href="../../file/solo_download.php?ID=<?php echo $id?>&uid=<?php echo $uid?>&type=Sports" style="margin:5%;" class="btn btn-info">Download latest copy</a>
+                  <input type="file" name="myfile" >
+                  <button style="margin-top:5%;" type="submit" name="save1" class="btn btn-info">Upload New</button>
+                </form>
+              </div>
+            </td>
+             <?php } ?>              
           </tr>
         <?php }
         } else {

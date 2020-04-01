@@ -5,18 +5,17 @@ $sql = 'SELECT * FROM authority WHERE ID=:id';
 $statement = $connection->prepare($sql);
 $statement->execute([':id' => $id ]);
 $person = $statement->fetch(PDO::FETCH_OBJ);
-if (isset ($_POST['FName'])  && isset($_POST['LName']) && isset($_POST['Cls']) && isset($_POST['Department'])  && isset($_POST['DOB']) && isset($_POST['Email'])  && isset($_POST['Mobile'])  && isset($_POST['Address']) && isset($_POST['Password'])) {
+if (isset ($_POST['FName'])  && isset($_POST['Cls']) && isset($_POST['Department'])  && isset($_POST['DOB']) && isset($_POST['Email'])  && isset($_POST['Mobile'])  && isset($_POST['Address']) && isset($_POST['Password'])) {
   $fname = $_POST['FName'];
-  $lname = $_POST['LName'];
   $desgn=$_POST['Designation'];
   $cls = $_POST['Cls'];
   $depart = $_POST['Department'];
   $email = $_POST['Email'];
   $mobile = $_POST['Mobile'];
   $pass = $_POST['Password'];
-  $sql = 'UPDATE authority SET FName=:fname,LName=:lname,Designation=:desgn,Class=:cls,Department=:depart,Email=:email,Mobile=:mobile,Password=:pass WHERE ID=:id';
+  $sql = 'UPDATE authority SET Full_Name=:fname,Designation=:desgn,Class=:cls,Department=:depart,Email=:email,Mobile=:mobile,Password=:pass WHERE ID=:id';
   $statement = $connection->prepare($sql);
-  if ($statement->execute([':fname' => $fname,':lname' => $lname,':desgn' => $desgn,':cls' => $cls,':depart' =>$depart,':email' => $email,':mobile' => $mobile,':pass' => $pass,':id' => $id])) {
+  if ($statement->execute([':fname' => $fname,':desgn' => $desgn,':cls' => $cls,':depart' =>$depart,':email' => $email,':mobile' => $mobile,':pass' => $pass,':id' => $id])) {
     header("Location: index.php");
   }
 
@@ -26,7 +25,7 @@ if (isset ($_POST['FName'])  && isset($_POST['LName']) && isset($_POST['Cls']) &
  ?>
 <html lang="en">
   <head>
-    <title>Hello, world!</title>
+    <title>Authority Profile</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -67,16 +66,13 @@ if (isset ($_POST['FName'])  && isset($_POST['LName']) && isset($_POST['Cls']) &
       <?php endif; ?>
       <form method="post">
         <div class="form-group">
-          <label for="FName">First Name</label>
-          <input value="<?= $person->FName; ?>" type="text" name="FName" id="fname" class="form-control">
+          <label for="FName">Full Name</label>
+          <input value="<?= $person->Full_Name; ?>" type="text" name="FName" id="fname" class="form-control">
         </div>
-        <div class="form-group">
-          <label for="LName">Last Name</label>
-          <input value="<?= $person->LName; ?>" type="text" name="LName" id="lname" class="form-control">
-        </div>
+        
         <div class="form-group">
           <label for="Cls">Designation</label>
-          <input value="<?= $person->Class; ?>" type="text" name="Designation" id="desgn" class="form-control">
+          <input value="<?= $person->Designation; ?>" type="text" name="Designation" id="desgn" class="form-control">
         </div>
         <div class="form-group">
           <label for="Cls">Class</label>

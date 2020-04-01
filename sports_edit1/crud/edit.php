@@ -1,6 +1,7 @@
 <?php
 require 'db.php';
 $id = $_GET['ID'];
+$uid = $_GET['uid'];
 $message = '';
 $sql = 'SELECT * FROM sports WHERE ID=:id';
 $statement = $connection->prepare($sql);
@@ -14,9 +15,9 @@ if (isset ($_POST['Type'])  && isset($_POST['Description']) && isset($_POST['Ven
   $rawdate = $_POST['DOB'];
   $dob = date('Y-m-d',strtotime($rawdate));
   
-  $sql = 'UPDATE sports SET Sports_Name=:fname,Description=:lname,Venue=:cls,Achievements=:achieve,Date_Sports=:dob WHERE ID=:id';
+  $sql = 'UPDATE sports SET Sports_Name=:fname,Description=:lname,Venue=:cls,Achievements=:achieve,Date_Sports=:dob WHERE UID=:uid';
   $statement = $connection->prepare($sql);
-  if ($statement->execute([':fname' => $type,':lname' => $descp,':cls' => $venue,':achieve' => $achieve,':dob' => $dob,':id' => $id])) {
+  if ($statement->execute([':fname' => $type,':lname' => $descp,':cls' => $venue,':achieve' => $achieve,':dob' => $dob,':uid' => $uid])) {
     header("Location: index.php?ID=".$id);
   }
   
@@ -50,9 +51,6 @@ else{
       </li>
       <li class="nav-item">
         <a class="nav-link" href="create.php?ID=<?php echo $id?>">Add Achievements</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="">Edit Achievements</a>
       </li>
       
       

@@ -22,7 +22,6 @@ if($link === false){
 if(isset($_POST['user'])){
 	$id = mysqli_real_escape_string($link, $_REQUEST['user']);
 	$fname = mysqli_real_escape_string($link, $_REQUEST['fname']);
-	$lname = mysqli_real_escape_string($link, $_REQUEST['lname']);
 	$desgn = mysqli_real_escape_string($link, $_REQUEST['desgn']);
 	$depart = mysqli_real_escape_string($link, $_REQUEST['depart']);
 	$mno = mysqli_real_escape_string($link, $_REQUEST['mobile']);
@@ -60,7 +59,7 @@ $SELECT = "SELECT ID From authority Where ID = ? Limit 1";
      $stmt->store_result();
      $rnum = $stmt->num_rows;
      if ($rnum==0) {
-      $sql = "INSERT INTO authority (ID, FName,LName,Designation,Class,Department,Email,Mobile,Password) VALUES ('$id', '$fname', '$lname', '$desgn', '$cls', '$depart','$email','$mno','$pass')";
+      $sql = "INSERT INTO authority (ID, Full_Name,Designation,Class,Department,Email,Mobile,Password) VALUES ('$id', '$fname', '$desgn', '$cls', '$depart','$email','$mno','$pass')";
 
       if(isset($_SESSION['Error'])){
 		echo $_SESSION['Error'];

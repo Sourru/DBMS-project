@@ -50,10 +50,6 @@ $people = $statement->fetchAll(PDO::FETCH_OBJ);
       <li class="nav-item">
         <a class="nav-link" href="create.php?ID=<?php echo $id?>">Add Achievements</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="edit.php?ID=<?php echo $id?>">Edit Achievements</a>
-      </li>
-      
       
     </ul>
   </div>
@@ -73,6 +69,8 @@ $people = $statement->fetchAll(PDO::FETCH_OBJ);
           <th>Associated Organisation</th>
           <th>Venue</th>
           <th>Date of Occasion</th>
+          <th></th>
+          <th> Upload Certificate</th>
         </tr>
         <?php if (mysqli_num_rows($result) > 0) {
   
@@ -80,6 +78,7 @@ $people = $statement->fetchAll(PDO::FETCH_OBJ);
        ?>
           <tr>
             <td><?php echo $row ['ID'];?></td>
+             <?php $uid = $row ['UID'];?>
             <td><?php echo $row ['Nature_of_work'];?>
               <?php $type = $row ['Nature_of_work'];?>
             </td>
@@ -95,9 +94,34 @@ $people = $statement->fetchAll(PDO::FETCH_OBJ);
             <td><?php echo $row ['Date_SW'];?></td>
             
             <td>
-              <a href="edit.php?ID=<?php echo $id?>" class="btn btn-info">Edit</a>
-              <a onclick="return confirm('Are you sure you want to delete this entry?')" href="delete.php?ID=<?php echo urlencode($id) ?>&art=<?php echo urlencode($type) ?>&des=<?php echo urlencode($desc) ?>&ven=<?php echo urlencode($venue) ?>&ach=<?php echo urlencode($ach) ?>" class='btn btn-danger'>Delete</a>
+              <a href="edit.php?ID=<?php echo urlencode($id)?>&uid=<?php echo urlencode($uid) ?>" style="margin:5%;" class="btn btn-info">Edit</a>
+              <a onclick="return confirm('Are you sure you want to delete this entry?')" style="margin:5%;" href="delete.php?ID=<?php echo urlencode($id) ?>&uid=<?php echo urlencode($uid) ?>" class='btn btn-danger'>Delete</a>
             </td>
+            <?php  
+
+                  $sql1 = "SELECT * FROM files WHERE ID = '$id' and UID='$uid'";
+                  $result1 = mysqli_query ($conn,$sql1) or die ('Error');
+                  if(mysqli_num_rows($result1)==0)
+                  {
+            ?>
+            <td >
+               <form action="../../file/filesLogic.php?ID=<?php echo $id?>&uid=<?php echo $uid?>&type=Social" method="post" enctype="multipart/form-data" >
+                  <input type="file" name="myfile" >
+                  <button style="margin:5%;" type="submit" name="save" class="btn btn-info">Upload(Mandatory)</button>
+                </form>
+            </td>
+             <?php }else{ ?>
+              
+            <td >  
+              <div>                        
+                <form action="../../file/filesLogic.php?ID=<?php echo $id?>&uid=<?php echo $uid?>&type=Social" method="post" enctype="multipart/form-data" >
+                 <a href="../../file/solo_download.php?ID=<?php echo $id?>&uid=<?php echo $uid?>&type=Social" style="margin:5%;" class="btn btn-info">Download latest copy</a>
+                  <input type="file" name="myfile" >
+                  <button style="margin-top:5%;" type="submit" name="save1" class="btn btn-info">Upload New</button>
+                </form>
+              </div>
+            </td>
+             <?php } ?>
           </tr>
         <?php }
         } else {

@@ -24,12 +24,7 @@
    <li><a href="/projects/auth_comp_view/crud/index.php?ID=<?php echo $id?>">Competitve Coding</a></li>
   </ul>
  </li>
- <li><a href="#">Help</a>
- <ul>
-  <li><a href="">College imp No.s</a>
-  <li><a href="">College imp Docs</a>
-  <li><a href="">College Notices</a>  
- </ul>
+ <li><a href="/projects/authhome.php?ID=<?php echo $id?>">Graph Analysis</a>
  </li>
  <li><a href="#">About us</a>
  <ul>

@@ -36,6 +36,7 @@ echo "<script type='text/javascript'>alert('Login Credentials verified')
 //echo '<script> window.location ="Register.php"';
    
 }else{
+  //  header("location: Auth_login.php");
 echo "<script type='text/javascript'>alert('Invalid Login Credentials')</script>";
 //echo "Invalid Login Credentials";
 }

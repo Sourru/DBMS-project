@@ -5,6 +5,8 @@ $link = mysqli_connect("localhost", "root", "", "dbms_project");
  $fname ='';
  $lname ='';
  $cls ='';
+ $year ='';
+ $roll ='';
  $depart ='';
  $mno ='';
  $email ='';
@@ -20,8 +22,9 @@ if($link === false){
 if(isset($_POST['user'])){
 	$id = mysqli_real_escape_string($link, $_REQUEST['user']);
 	$fname = mysqli_real_escape_string($link, $_REQUEST['fname']);
-	$lname = mysqli_real_escape_string($link, $_REQUEST['lname']);
 	$cls = mysqli_real_escape_string($link, $_REQUEST['class']);
+	$roll = mysqli_real_escape_string($link, $_REQUEST['rollno']);
+	$year = substr($cls,0,2);
 	$depart = mysqli_real_escape_string($link, $_REQUEST['depart']);
 	$mno = mysqli_real_escape_string($link, $_REQUEST['mobile']);
 	$email = mysqli_real_escape_string($link, $_REQUEST['email']);
@@ -56,7 +59,7 @@ $SELECT = "SELECT ID From student Where ID = ? Limit 1";
      $stmt->store_result();
      $rnum = $stmt->num_rows;
      if ($rnum==0) {
-      $sql = "INSERT INTO student (ID, FName,LName,Class,Department,DOB,Email,Mobile,Address,Password) VALUES ('$id', '$fname', '$lname', '$cls', '$depart','$date','$email','$mno','$address','$pass')";
+      $sql = "INSERT INTO student (ID, Full_Name,Class,Rollno,Year,Department,DOB,Email,Mobile,Address,Password) VALUES ('$id', '$fname', '$cls', '$roll', '$year', '$depart','$date','$email','$mno','$address','$pass')";
 
       if(isset($_SESSION['Error'])){
 		echo $_SESSION['Error'];
