@@ -108,10 +108,9 @@ form.example1 button{
 }
 
 form.example button[value=Search1] {
-  float: right;
-  width: 15%;
+  float: left;
+  width: 5%;
   position: absolute;
-  margin-left:1%;
   padding: 1px;
   background: #2196F3;
   color: white;
@@ -202,7 +201,7 @@ th a i {
               <option  value="Roll No">Roll No</option>
               <option  value="Email">Email</option>
               <option  value="Mobile">Mobile</option>
-              <option  value="Date Of Birth">Date Of Birth</option>
+              <option  value="DOB">DOB</option>
               </select>     
             </datalist>
           <div class="input-group" id="ID" style="display: none;">
@@ -227,10 +226,10 @@ th a i {
             <button type="submit" value="Search"><i class="fa fa-search"></i></button>
           </div> 
           <li class="nav-item" >
-          <div id="date" style="display: none;width: 900px;">
-            <label for="dt">DOB</label>
+          <div id="date" style="display: none;width: 200px;">
+            <label for="dt">Date of Birth:-</label>
             <input id="dt_id" type="date" name="dt">
-            <button type="submit" value="Search1">Search&ensp;<i class="fa fa-search"></i></button>
+            <button type="submit" value="Search1">Search&ensp;</button>
           </div>
         </li>
        </form> 
@@ -265,7 +264,7 @@ th a i {
             document.getElementById("Achiv").style.display = "block";
             document.getElementById("srch").style.display = "none";
           }
-          if(opt == "Date of Birth"){
+          if(opt == "DOB"){
             document.getElementById("date").style.display = "block";
             document.getElementById("srch").style.display = "none";
           }

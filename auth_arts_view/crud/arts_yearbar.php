@@ -1,4 +1,5 @@
 <?php
+$id = isset($_GET['ID']) ? $_GET['ID'] : '';
  $year = isset($_GET['Year']) ? $_GET['Year'] : '';
  $link = mysqli_connect("localhost", "root", "", "dbms_project");
 
@@ -48,7 +49,7 @@ $query = "SELECT Class,count(*) as num1 FROM student s inner join arts sp WHERE 
           var selectedItem = chart.getSelection()[0];
           if (selectedItem) {
             var topping = data.getValue(selectedItem.row, 0);  
-              window.location.href="index.php?flag=3&Class="+topping;//link to class wise 
+              window.location.href="index.php?flag=3&ID=<?php echo urlencode($id)?>&Class="+topping;//link to class wise 
           }
         }
 

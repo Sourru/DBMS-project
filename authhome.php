@@ -87,7 +87,7 @@ $comp3 = "SELECT Department,count(*) as numc2 FROM student s inner join competit
           var selectedItem = chart.getSelection()[0];
           if (selectedItem) {
             var topping = data.getValue(selectedItem.row, 0);
-              window.location.href="auth_sports_view/crud/index.php?flag=2&act="+topping;
+              window.location.href="auth_sports_view/crud/index.php?flag=2&ID=<?php echo urlencode($id)?>&act="+topping;
           }
         }
 
@@ -119,7 +119,7 @@ $comp3 = "SELECT Department,count(*) as numc2 FROM student s inner join competit
           var selectedItem = chart2.getSelection()[0];
           if (selectedItem) {
             var topping = data2.getValue(selectedItem.row, 0);
-              window.location.href="auth_sports_view/crud/index.php?flag=1&Dept="+topping;
+              window.location.href="auth_sports_view/crud/index.php?flag=1&ID=<?php echo urlencode($id)?>&Dept="+topping;
           }
         }
 
@@ -160,7 +160,7 @@ $comp3 = "SELECT Department,count(*) as numc2 FROM student s inner join competit
           var selectedItem = chart1.getSelection()[0];
           if (selectedItem) {
             var topping = data1.getValue(selectedItem.row, 0);     
-              window.location.href="auth_sports_view/crud/sports_yearbar.php?Year="+topping;
+              window.location.href="auth_sports_view/crud/sports_yearbar.php?ID=<?php echo urlencode($id)?>&Year="+topping;
               //name of link and repeat this for fe se te
           }
         }
@@ -341,22 +341,22 @@ function carousel() {
 </script> -->
 <script type="text/javascript">
   function redirect(){
-    window.location.href="auth_sports_view/crud/index.php";
+    window.location.href="auth_sports_view/crud/index.php?ID=<?php echo urlencode($id)?>";
 
   }
   
    function redirectart(){
-    window.location.href="auth_arts_view/crud/index.php";
+    window.location.href="auth_arts_view/crud/index.php?ID=<?php echo urlencode($id)?>";
 
   }
  
    function redirectsoc(){
-    window.location.href="auth_social_view/crud/index.php";
+    window.location.href="auth_social_view/crud/index.php?ID=<?php echo urlencode($id)?>";
 
   }
  
    function redirectcom(){
-    window.location.href="auth_comp_view/crud/index.php";
+    window.location.href="auth_comp_view/crud/index.php?ID=<?php echo urlencode($id)?>";
 
   }
    
@@ -392,7 +392,7 @@ function carousel() {
       var selectedItem = charta.getSelection()[0];
           if (selectedItem) {
             var topping = dataa.getValue(selectedItem.row, 0);
-              window.location.href="auth_arts_view/crud/index.php?flag=2&act="+topping;
+              window.location.href="auth_arts_view/crud/index.php?flag=2&ID=<?php echo urlencode($id)?>&act="+topping;
           }
         }
 
@@ -424,7 +424,7 @@ function carousel() {
           var selectedItem = charta2.getSelection()[0];
           if (selectedItem) {
             var topping = dataa2.getValue(selectedItem.row, 0);
-             window.location.href="auth_arts_view/crud/index.php?flag=1&Dept="+topping;
+             window.location.href="auth_arts_view/crud/index.php?flag=1&ID=<?php echo urlencode($id)?>&Dept="+topping;
           }
         }
 
@@ -462,7 +462,7 @@ function carousel() {
           var selectedItem = charta1.getSelection()[0];
           if (selectedItem) {
             var topping = dataa1.getValue(selectedItem.row, 0);
-             window.location.href="auth_arts_view/crud/arts_yearbar.php?Year="+topping;
+             window.location.href="auth_arts_view/crud/arts_yearbar.php?ID=<?php echo urlencode($id)?>&Year="+topping;
           }
         }
 
@@ -502,7 +502,7 @@ function carousel() {
       var selectedItem = charts.getSelection()[0];
           if (selectedItem) {
             var topping = datas.getValue(selectedItem.row, 0);
-              window.location.href="auth_social_view/crud/index.php?flag=2&act="+topping;
+              window.location.href="auth_social_view/crud/index.php?flag=2&ID=<?php echo urlencode($id)?>&act="+topping;
           }
         }
 
@@ -534,7 +534,7 @@ function carousel() {
           var selectedItem = charts2.getSelection()[0];
           if (selectedItem) {
             var topping = datas2.getValue(selectedItem.row, 0);
-             window.location.href="auth_social_view/crud/index.php?flag=1&Dept="+topping;
+             window.location.href="auth_social_view/crud/index.php?flag=1&ID=<?php echo urlencode($id)?>&Dept="+topping;
           }
         }
 
@@ -572,7 +572,7 @@ function carousel() {
           var selectedItem = charts1.getSelection()[0];
           if (selectedItem) {
             var topping = datas1.getValue(selectedItem.row, 0);
-             window.location.href="auth_social_view/crud/social_yearbar.php?Year="+topping;
+             window.location.href="auth_social_view/crud/social_yearbar.php?ID=<?php echo urlencode($id)?>&Year="+topping;
           }
         }
 
@@ -610,7 +610,7 @@ function carousel() {
       var selectedItem = chartc.getSelection()[0];
           if (selectedItem) {
             var topping = datac.getValue(selectedItem.row, 0);
-              window.location.href="auth_comp_view/crud/index.php?flag=2&act="+topping;
+              window.location.href="auth_comp_view/crud/index.php?flag=2&ID=<?php echo urlencode($id)?>&act="+topping;
           }
         }
 
@@ -642,7 +642,7 @@ function carousel() {
           var selectedItem = chartc2.getSelection()[0];
           if (selectedItem) {
             var topping = datac2.getValue(selectedItem.row, 0);
-             window.location.href="auth_comp_view/crud/index.php?flag=1&Dept="+topping;
+             window.location.href="auth_comp_view/crud/index.php?flag=1&ID=<?php echo urlencode($id)?>&Dept="+topping;
           }
         }
 
@@ -680,7 +680,7 @@ function carousel() {
           var selectedItem = chartc1.getSelection()[0];
           if (selectedItem) {
             var topping = datac1.getValue(selectedItem.row, 0);
-              window.location.href="auth_comp_view/crud/comp_yearbar.php?Year="+topping;
+              window.location.href="auth_comp_view/crud/comp_yearbar.php?ID=<?php echo urlencode($id)?>&Year="+topping;
           }
         }
 

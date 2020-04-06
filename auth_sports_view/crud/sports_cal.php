@@ -233,7 +233,7 @@ th a i {
             <input id="df_id" type="date" name="df"><br>
             <label for="df">Date To &emsp;</label>
             <input id="dt_id" type="date" name="dt">
-            <button type="submit" value="Search1">Search&ensp;<i class="fa fa-search"></i></button>
+            <button type="submit" value="Search">Search&ensp;<i class="fa fa-search"></i></button>
           </div>
         </li>
        </form> 
