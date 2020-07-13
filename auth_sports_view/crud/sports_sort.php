@@ -8,7 +8,7 @@ $flag = isset($_GET['flag']) ? $_GET['flag'] : '';
 $sql2 = isset($_GET['sql1']) ? urldecode($_GET['sql1']) : '';
 
   if($column != 'None' && $sort_order != 'None'){
-     $columns = array('ID','Sports_Name','Description','Venue','Achievements','Date_Sports','Rollno','Year');
+  $columns = array('ID','Sports_Name','Description','Venue','Achievements','Date_Sports','Rollno','Year');
   $column = isset($_GET['column']) && in_array($_GET['column'], $columns) ? $_GET['column'] : $columns[0];
   $sort_order = isset($_GET['order']) && strtolower($_GET['order']) == 'desc' ? 'DESC' : 'ASC';
   }

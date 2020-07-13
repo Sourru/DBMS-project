@@ -280,7 +280,7 @@ th a i {
       <table class="table table-bordered">
        <thead>
         <tr style="font-size: 14.3px;">
-          <th><a href="stu_sort.php?ID=<?php echo urlencode($id)?>&column=ID&order=<?php echo $asc_or_desc; ?>&sql=<?php echo urlencode($sql) ?>&sql1=<?php echo urlencode($sql1) ?>&flag=<?php echo urlencode($flag) ?>">Reg. ID<i class="fas fa-sort<?php echo $column == 'ID' ? '-' . $up_or_down : ''; ?>"></i></a></th>
+          <th style="width: 130px;"><a href="stu_sort.php?ID=<?php echo urlencode($id)?>&column=ID&order=<?php echo $asc_or_desc; ?>&sql=<?php echo urlencode($sql) ?>&sql1=<?php echo urlencode($sql1) ?>&flag=<?php echo urlencode($flag) ?>">Reg. ID<i class="fas fa-sort<?php echo $column == 'ID' ? '-' . $up_or_down : ''; ?>"></i></a></th>
           <th><a href="stu_sort.php?ID=<?php echo urlencode($id)?>&column=Full_Name&order=<?php echo $asc_or_desc; ?>&sql=<?php echo urlencode($sql) ?>&sql1=<?php echo urlencode($sql1) ?>&flag=<?php echo urlencode($flag) ?>">Full Name<i class="fas fa-sort<?php echo $column == 'Full_Name' ? '-' . $up_or_down : ''; ?>"></i></a></th>
           <th><a href="stu_sort.php?ID=<?php echo urlencode($id)?>&column=Class&order=<?php echo $asc_or_desc; ?>&sql=<?php echo urlencode($sql) ?>&sql1=<?php echo urlencode($sql1) ?>&flag=<?php echo urlencode($flag) ?>">Class<i class="fas fa-sort<?php echo $column == 'Class' ? '-' . $up_or_down : ''; ?>"></i></a></th>
           <th><a href="stu_sort.php?ID=<?php echo urlencode($id)?>&column=Rollno&order=<?php echo $asc_or_desc; ?>&sql=<?php echo urlencode($sql) ?>&sql1=<?php echo urlencode($sql1) ?>&flag=<?php echo urlencode($flag) ?>">Roll No<i class="fas fa-sort<?php echo $column == 'Rollno' ? '-' . $up_or_down : ''; ?>"></i></a></th>
@@ -296,7 +296,7 @@ th a i {
        <tbody>
         <?php foreach($people as $person): ?>
           <tr>
-            <td><?= $person->ID; ?></td>
+            <td><b><a href="../../stu_profile_edit/teacher_view/view_stu_profile.php?ID=<?php echo $person->ID?>&aid=<?php echo $id?>" style="margin:5%;font-size: 14px;" ><?= $person->ID; ?></a></b></td>
             <td><?= $person->Full_Name; ?></td>
             <td><?= $person->Class; ?></td>
             <td><?= $person->Rollno; ?></td>
